@@ -9,6 +9,10 @@ const config={
             path:'/'
         },
         {
+            label:'Blog',
+            path:'/blog'
+        },
+        {
             label:'Profile',
             path:'/profile'
         },

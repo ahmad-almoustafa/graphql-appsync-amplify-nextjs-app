@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { Metadata } from 'next'
 import config from '@/utils/config'
+import "@/configureAmplify";
 
 export default function Home() {
   return (
