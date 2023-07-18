@@ -2,8 +2,14 @@
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
-type Todo @model {
+# @model=> directive provided by Amplify's GraphQL transformer
+# Automatically creates a DynamoDB table, a GraphQL type, and resolvers for CRUD operations
+# '!''=>required
+#@index directive => an index should be created for the field in the underlying data storage. 
+type Post @model {
   id: ID!
-  name: String!
-  description: String
+  title: String!
+  body: String!
+  username: String @index(name:"postByUsername",queryField:"postByUsername")
+  featureImage:String
 }

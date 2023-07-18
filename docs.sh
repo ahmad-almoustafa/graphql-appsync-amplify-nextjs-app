@@ -14,3 +14,9 @@ amplify add api
 
 # deploy your local backend resources defined in the Amplify project to the cloud.
 amplify push 
+#eidt schema and update
+amplify push  --allow-destructive-graphql-schema-updates
+
+
+# open your AWS account amolify console in the web browser
+amplify console api
