@@ -29,3 +29,7 @@ amplify console api
 # regenerate using typescript
 amplify remove api
 amplify push
+
+
+#add auth=> this will create the necessary AWS resources for authentication (Cognito ..etc)
+amplify add auth
