@@ -17,6 +17,7 @@ amplify push
 #eidt schema and update
 amplify push  --allow-destructive-graphql-schema-updates
 
+#this will genearte the 'src/graphql' folder + aws-exports.js  => generated files that facilitate interacting with your Amplify API from your frontend application.
 
 # open your AWS account amolify console in the web browser
 amplify console api
