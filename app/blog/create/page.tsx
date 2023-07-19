@@ -4,6 +4,9 @@
   import { Editor } from "react-draft-wysiwyg";
   import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
   import { stateToHTML } from "draft-js-export-html";
+import { API } from "aws-amplify";
+import { createPost } from "@/src/graphql/mutations";
+
 
   export default function CreatePost() {
     const [editorState, setEditorState] = useState(() =>
@@ -29,11 +32,9 @@
       console.log("content :", content);
       return content;
     };
-    const handleSubmit = (e: React.FormEvent) => {
-      
-      // Get the markup text from the editor state
-      const markupText = stateToHTML(editorState.getCurrentContent());
+    const handleSubmit = async(e: React.FormEvent) => {
       e.preventDefault();
+      await savePost()
 
       // Perform submit logic here (e.g., send data to the server)
       // console.log("Title:", title);
@@ -45,7 +46,33 @@
       setEditorState(EditorState.createEmpty());
       setFeatureImage(null);
     };
-
+    /**
+     * Save the post to the GraphQL API
+     * only cognito authenticated user can create post as per to our Auth rules
+     * if we didn't put authMode => default mode is API key which can read posts only
+     */
+    const savePost = async () => {
+     
+      // Get the markup text from the editor state
+      const markupText = stateToHTML(editorState.getCurrentContent());
+      if (title && markupText) {
+        // Create the post object
+        const post = {
+          title: title,
+          body:markupText ,
+        };
+        try{
+          const response = await API.graphql({
+            query: createPost,
+            variables: { input: post },
+            authMode: "AMAZON_COGNITO_USER_POOLS",
+          });
+          console.log('Post created:', response);
+        } catch (error) {
+          console.log("Error saving post:", error);
+        }
+    }
+    }
     return (
       <form onSubmit={handleSubmit} className="max-w-xl mx-auto py-8">
         <div className="mb-4">
