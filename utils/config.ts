@@ -15,6 +15,11 @@ const config={
             authenticated:false,
         },
         {
+            label:'Create Post',
+            path:'/blog/create',
+            authenticated:true,
+        },
+        {
             label:'My Blog',
             path:'/my-blog',
             authenticated:true,

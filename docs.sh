@@ -45,3 +45,13 @@ amplify add auth
 #@see https://docs.amplify.aws/lib/graphqlapi/authz/q/platform/js/
 amplify update api
 #then amplify push
+
+
+#rich text editor for reactjs
+#@see https://draftjs.org/docs/getting-started
+npm install draft-js react-draft-wysiwyg
+npm install --save-dev @types/react-draft-wysiwyg
+npm install --save @types/draft-js
+npm install draft-js-export-html
+
+
