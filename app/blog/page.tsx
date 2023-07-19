@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { listPosts } from "@/src/graphql/queries";
 import '@/configureAmplify';
 import {Post} from '@/src/API';
+import Link from "next/link";
 
 export default function Page() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -40,8 +41,9 @@ export default function Page() {
               key={post.id}
               className="bg-white p-4 rounded shadow-md"
             >
-              <h2 className="text-xl font-bold mb-2">{post.title}</h2>
-              <p className="text-gray-600">{post.body}</p>
+              <Link href={"/blog/"+post.id}> <h2 className="text-xl font-bold mb-2 text-blue-500 hover:text-blue-600">{post.title}</h2> </Link>
+              <p className="text-gray-600">Author: {post.owner || "Anonymous"} </p>
+              
             </div>
           ))}
         </div>

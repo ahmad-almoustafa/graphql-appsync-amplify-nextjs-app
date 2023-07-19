@@ -96,7 +96,7 @@ import { createPost } from "@/src/graphql/mutations";
 
           <Editor
             editorState={editorState}
-            wrapperClassName="bg-white border border-gray-300 rounded-md p-2 h-64 z-1 "
+            wrapperClassName="bg-white border border-gray-300 rounded-md p-2 h-96 z-1 "
             onEditorStateChange={handleEditorChange}
           />
         </div>
