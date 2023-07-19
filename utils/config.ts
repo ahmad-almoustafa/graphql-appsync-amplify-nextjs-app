@@ -6,15 +6,23 @@ const config={
     routes:[
         {
             label:'Home',
-            path:'/'
+            path:'/',
+            authenticated:false,
         },
         {
             label:'Blog',
-            path:'/blog'
+            path:'/blog',
+            authenticated:false,
+        },
+        {
+            label:'My Blog',
+            path:'/my-blog',
+            authenticated:true,
         },
         {
             label:'Profile',
-            path:'/profile'
+            path:'/profile',
+            authenticated:false,
         },
     ]
 }
