@@ -12,6 +12,7 @@ export const getPost = /* GraphQL */ `
       featureImage
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -31,6 +32,7 @@ export const listPosts = /* GraphQL */ `
         featureImage
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -61,6 +63,7 @@ export const postByUsername = /* GraphQL */ `
         featureImage
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken

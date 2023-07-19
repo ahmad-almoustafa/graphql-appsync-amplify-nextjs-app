@@ -15,6 +15,7 @@ export const createPost = /* GraphQL */ `
       featureImage
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -32,6 +33,7 @@ export const updatePost = /* GraphQL */ `
       featureImage
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -49,6 +51,7 @@ export const deletePost = /* GraphQL */ `
       featureImage
       createdAt
       updatedAt
+      owner
       __typename
     }
   }

@@ -3,8 +3,11 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost($filter: ModelSubscriptionPostFilterInput) {
-    onCreatePost(filter: $filter) {
+  subscription OnCreatePost(
+    $filter: ModelSubscriptionPostFilterInput
+    $owner: String
+  ) {
+    onCreatePost(filter: $filter, owner: $owner) {
       id
       title
       body
@@ -12,13 +15,17 @@ export const onCreatePost = /* GraphQL */ `
       featureImage
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost($filter: ModelSubscriptionPostFilterInput) {
-    onUpdatePost(filter: $filter) {
+  subscription OnUpdatePost(
+    $filter: ModelSubscriptionPostFilterInput
+    $owner: String
+  ) {
+    onUpdatePost(filter: $filter, owner: $owner) {
       id
       title
       body
@@ -26,13 +33,17 @@ export const onUpdatePost = /* GraphQL */ `
       featureImage
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost($filter: ModelSubscriptionPostFilterInput) {
-    onDeletePost(filter: $filter) {
+  subscription OnDeletePost(
+    $filter: ModelSubscriptionPostFilterInput
+    $owner: String
+  ) {
+    onDeletePost(filter: $filter, owner: $owner) {
       id
       title
       body
@@ -40,6 +51,7 @@ export const onDeletePost = /* GraphQL */ `
       featureImage
       createdAt
       updatedAt
+      owner
       __typename
     }
   }

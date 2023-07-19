@@ -17,6 +17,7 @@ export default function Page() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        // authMode => default authorization mode is API key which configured for the app  @/configureAmplify;
         const response = (await API.graphql({ query: listPosts } )) as  { data: { listPosts: { items: Post[] } } };;
         console.log("response", response);
         setPosts(response.data.listPosts.items);

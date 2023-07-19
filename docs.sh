@@ -33,3 +33,15 @@ amplify push
 
 #add auth=> this will create the necessary AWS resources for authentication (Cognito ..etc)
 amplify add auth
+#then amplify push
+
+#add authorization to your GraphQL API
+#Each AppSync API is set with a default authorization mode => API Key
+#amplify update api => then select the Authorization modes 
+# you can see now in the AWS Appsynch console two Authorization providers: API Key and Amazon Cognito User Pool
+# API key => if you try query: listPosts => would work beacaue Auth rule allow public access for read 
+# API key => if you try mutation: createPost =>error: Unauthorized
+# listPosts => now we have owner field which indicate the user who created the post("owner": "test_user_name" or "owner": null for posts created before adding the auth rule)
+#@see https://docs.amplify.aws/lib/graphqlapi/authz/q/platform/js/
+amplify update api
+#then amplify push

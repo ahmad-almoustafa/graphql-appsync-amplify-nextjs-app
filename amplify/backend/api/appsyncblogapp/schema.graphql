@@ -6,7 +6,15 @@ input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONL
 # Automatically creates a DynamoDB table, a GraphQL type, and resolvers for CRUD operations
 # '!''=>required
 #@index directive => an index should be created for the field in the underlying data storage. 
-type Post @model {
+#@see :https://docs.amplify.aws/cli/graphql/data-modeling/#configure-a-secondary-index
+#
+#Use the @auth directive to configure authorization rules for public, sign-in user, 
+#everyone (public) can read every Post but owner (authenticated users) can create, read, update, and delete their own Post.
+#@see https://docs.amplify.aws/cli/graphql/authorization-rules/
+type Post @model @auth(rules: [
+  { allow: public, operations: [read]},
+  { allow: owner }
+]){
   id: ID!
   title: String!
   body: String!

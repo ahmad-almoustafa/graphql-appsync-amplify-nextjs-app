@@ -69,6 +69,7 @@ export type Post = {
   featureImage?: string | null,
   createdAt: string,
   updatedAt: string,
+  owner?: string | null,
 };
 
 export type UpdatePostInput = {
@@ -177,6 +178,7 @@ export type CreatePostMutation = {
     featureImage?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -195,6 +197,7 @@ export type UpdatePostMutation = {
     featureImage?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -213,6 +216,7 @@ export type DeletePostMutation = {
     featureImage?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -230,6 +234,7 @@ export type GetPostQuery = {
     featureImage?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -251,6 +256,7 @@ export type ListPostsQuery = {
       featureImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -276,6 +282,7 @@ export type PostByUsernameQuery = {
       featureImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -283,6 +290,7 @@ export type PostByUsernameQuery = {
 
 export type OnCreatePostSubscriptionVariables = {
   filter?: ModelSubscriptionPostFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreatePostSubscription = {
@@ -295,11 +303,13 @@ export type OnCreatePostSubscription = {
     featureImage?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdatePostSubscriptionVariables = {
   filter?: ModelSubscriptionPostFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdatePostSubscription = {
@@ -312,11 +322,13 @@ export type OnUpdatePostSubscription = {
     featureImage?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeletePostSubscriptionVariables = {
   filter?: ModelSubscriptionPostFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeletePostSubscription = {
@@ -329,5 +341,6 @@ export type OnDeletePostSubscription = {
     featureImage?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
