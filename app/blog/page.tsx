@@ -12,6 +12,7 @@ import { listPosts } from "@/src/graphql/queries";
 import '@/configureAmplify';
 import {Post} from '@/src/API';
 import Link from "next/link";
+import PostList from "@/components/blog/PostList";
 
 export default function Page() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -34,20 +35,8 @@ export default function Page() {
       <header className="text-center pt-5  px-6">
         <h1 className="text-2xl py-5 font-bold">Blog Page!</h1>
       </header>
-      <main className="container mx-auto py-8">
-        <div className="grid grid-cols-2 gap-4">
-          {posts.map((post) => (
-            <div
-              key={post.id}
-              className="bg-white p-4 rounded shadow-md"
-            >
-              <Link href={"/blog/"+post.id}> <h2 className="text-xl font-bold mb-2 text-blue-500 hover:text-blue-600">{post.title}</h2> </Link>
-              <p className="text-gray-600">Author: {post.owner || "Anonymous"} </p>
-              
-            </div>
-          ))}
-        </div>
-      </main>
+      <PostList posts={posts}/>
+
     </div>
   );
 }
