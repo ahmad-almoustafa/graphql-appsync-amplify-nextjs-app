@@ -6,6 +6,7 @@
   import { stateToHTML } from "draft-js-export-html";
 import { API, Auth } from "aws-amplify";
 import { createPost } from "@/src/graphql/mutations";
+import { getCurrentAuthenticatedUser } from "@/utils/helpers";
 
 
   export default function CreatePost() {
@@ -55,9 +56,7 @@ import { createPost } from "@/src/graphql/mutations";
      
       // Get the markup text from the editor state
       const markupText = stateToHTML(editorState.getCurrentContent());
-      const {username} = await Auth.currentAuthenticatedUser({
-        bypassCache: false, // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-      });
+      const {username} = await getCurrentAuthenticatedUser();
       if (title && markupText) {
         // Create the post object
         const post = {
