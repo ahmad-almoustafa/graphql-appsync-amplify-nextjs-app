@@ -1,4 +1,6 @@
-import { Auth } from "aws-amplify";
+import { Post } from "@/src/API";
+import { getPost } from "@/src/graphql/queries";
+import { API, Auth } from "aws-amplify";
 
 export const getCurrentAuthenticatedUser= async ()=>{
     const user= await Auth.currentAuthenticatedUser({
@@ -6,3 +8,17 @@ export const getCurrentAuthenticatedUser= async ()=>{
   });
   return user
 }
+
+export const fetchPost = async (id:string) => {
+  try {
+    // authMode => default authorization mode is API key which configured for the app  @/configureAmplify;
+    const response = (await API.graphql({ 
+      query: getPost ,
+      variables: { id},
+  } )) as  { data: { getPost: Post } };
+    console.log("response", response);
+   return response.data.getPost;
+  } catch (error) {
+    console.log("Error fetching post:", error);
+  }
+};

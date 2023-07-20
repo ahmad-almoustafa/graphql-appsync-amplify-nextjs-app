@@ -1,10 +1,11 @@
 "use client";
 import PostList from '@/components/blog/PostList';
 import {Post} from '@/src/API';
-import { deletePost } from '@/src/graphql/mutations';
+import { deletePost, updatePost } from '@/src/graphql/mutations';
 import { postByUsername } from '@/src/graphql/queries';
 import { getCurrentAuthenticatedUser } from '@/utils/helpers';
 import { API } from 'aws-amplify';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
   
@@ -50,13 +51,18 @@ export default  function MyBlog({ params }: { params: { id: string } }){
             console.log("Error deleting post:", error);
         }
     }
+
+
     // JSX component name must start with a capital letter. 
     const Actions:React.FC<Post> =(post:Post)=>{
         return(
             <div className="flex justify-end mt-4 space-x-2">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+            <Link 
+                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+                href={`/blog/edit/${post.id}`}
+            >
               Edit
-            </button>
+            </Link>
             <button 
                 className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
                 onClick={() => deleteUserPost(post.id)}

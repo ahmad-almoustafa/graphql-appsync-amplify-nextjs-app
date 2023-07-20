@@ -1,6 +1,7 @@
 "use client";
 import {Post} from '@/src/API';
 import { getPost } from '@/src/graphql/queries';
+import { fetchPost } from '@/utils/helpers';
 import { API } from 'aws-amplify';
 import { Metadata, ResolvingMetadata } from 'next';
 import { Props } from 'next/script';
@@ -9,21 +10,13 @@ import { useEffect, useState } from 'react';
 export default  function Post({ params }: { params: { id: string } }){
     const [post, setPost] = useState<Post>();
     useEffect(() => {
-      const fetchPost = async () => {
-        try {
-          // authMode => default authorization mode is API key which configured for the app  @/configureAmplify;
-          const response = (await API.graphql({ 
-            query: getPost ,
-            variables: { id: params.id },
-        } )) as  { data: { getPost: Post } };
-          console.log("response", response);
-          setPost(response.data.getPost);
-        } catch (error) {
-          console.log("Error fetching post:", error);
-        }
+      const getPost = async () => {
+          const post= await fetchPost(params.id);
+          setPost(post);
+  
       };
   
-      fetchPost();
+      getPost();
     }, []);
  
 
