@@ -50,6 +50,7 @@ amplify update api
 
 #add a storage resource to your Amplify project (like s3)
 #this will create s3 bucket and add the necessary configuration to your Amplify project
+#@see https://docs.amplify.aws/lib/storage/getting-started/q/platform/js/
 amplify add storage
 #then amplify push --y
 

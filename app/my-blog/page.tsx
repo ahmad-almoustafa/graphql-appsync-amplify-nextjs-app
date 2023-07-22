@@ -3,7 +3,7 @@ import PostList from '@/components/blog/PostList';
 import {Post} from '@/src/API';
 import { deletePost, updatePost } from '@/src/graphql/mutations';
 import { postByUsername } from '@/src/graphql/queries';
-import { getCurrentAuthenticatedUser } from '@/utils/helpers';
+import { getCurrentAuthenticatedUser, getPresignedURL } from '@/utils/helpers';
 import { API } from 'aws-amplify';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -21,7 +21,14 @@ export default  function MyBlog({ params }: { params: { id: string } }){
                 authMode: "AMAZON_COGNITO_USER_POOLS"
             
             } )) as  { data: { postByUsername: { items: Post[] } } };
-            console.log("response", response);
+            //console.log("response", response);
+            // Fetch image URLs for all posts
+            for (const post of response.data.postByUsername.items) {
+                if (post.featureImage) {
+                post.featureImage = await getPresignedURL(post.featureImage);
+                
+                }
+            }
             setMyPosts(response.data.postByUsername.items);
         } catch (error) {
             console.log("Error fetching user posts:", error);

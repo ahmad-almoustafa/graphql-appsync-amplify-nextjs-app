@@ -13,6 +13,7 @@ import '@/configureAmplify';
 import {Post} from '@/src/API';
 import Link from "next/link";
 import PostList from "@/components/blog/PostList";
+import { getPresignedURL } from "@/utils/helpers";
 
 export default function Page() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -21,7 +22,15 @@ export default function Page() {
       try {
         // authMode => default authorization mode is API key which configured for the app  @/configureAmplify;
         const response = (await API.graphql({ query: listPosts } )) as  { data: { listPosts: { items: Post[] } } };
-        console.log("response", response);
+        // console.log("response", response.data.listPosts.items);
+        // Fetch image URLs for all posts
+        for (const post of response.data.listPosts.items) {
+          if (post.featureImage) {
+            post.featureImage = await getPresignedURL(post.featureImage);
+           
+          }
+        }
+        console.log("response after", response.data.listPosts.items);
         setPosts(response.data.listPosts.items);
       } catch (error) {
         console.log("Error fetching posts:", error);
