@@ -47,11 +47,19 @@ amplify update api
 #then amplify push
 
 
+
+#add a storage resource to your Amplify project (like s3)
+#this will create s3 bucket and add the necessary configuration to your Amplify project
+amplify add storage
+#then amplify push --y
+
 #rich text editor for reactjs
 #@see https://draftjs.org/docs/getting-started
 npm install draft-js react-draft-wysiwyg
 npm install --save-dev @types/react-draft-wysiwyg
 npm install --save @types/draft-js
 npm install draft-js-export-html
+
+
 
 

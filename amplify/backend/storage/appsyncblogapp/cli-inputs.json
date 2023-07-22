@@ -1,0 +1,16 @@
+{
+  "resourceName": "appsyncblogapp",
+  "policyUUID": "e74f44e8",
+  "bucketName": "appsyncblogapp",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
